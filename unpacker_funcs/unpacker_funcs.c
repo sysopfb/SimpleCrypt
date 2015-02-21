@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include ".../dosheader.h"
+#include <Windows.h>
 
 int getDataPtr(char *file, long *pos, int sect)
 {

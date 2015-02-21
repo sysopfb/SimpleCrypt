@@ -1,3 +1,6 @@
+typedef unsigned short WORD;
+typedef long LONG;
+
 typedef struct _IMAGE_DOS_HEADER {    // DOS .EXE header
 	WORD   e_magic;                     // Magic number
 	WORD   e_cblp;                      // Bytes on last page of file
