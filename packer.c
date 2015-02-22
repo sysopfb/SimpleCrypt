@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include "rc4.h"
-#include "packer_funcs/packre_funcs.h"
+#include "packer_funcs/packer_funcs.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,17 +22,17 @@ int main(int argc, char *argv[])
 
 	//rc4 encrypt file
 
-	FILE *stub = open(stubCopy, "rb+");
+	FILE *stub = fopen(stubCopy, "rb+");
 
-	FILE *fp = open(argv[2], "rb");
+	FILE *fp = fopen(argv[2], "rb");
 	fseek(fp, 0, SEEK_END);
 	long fileSize = ftell(fp);
 	long none = 0;
 	rewind(fp);
 
 	fseek(stub, 0, SEEK_END);
-	
-	fwrite(fileSize, sizeof(fileSize), 1, stub);
+
+	fwrite(&fileSize, sizeof(fileSize), 1, stub);
 	fwrite(none, sizeof(none), 1, stub);
 
 	long stubSize = ftell(stub);
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	fclose(fp);
 	fclose(stub);
 
-	setDataPtr(stubCopy, stubSize);
+	setDataPtr(stubCopy, stubSize, 0);
 
 	return 0;
 }
