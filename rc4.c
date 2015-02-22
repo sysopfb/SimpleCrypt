@@ -5,7 +5,7 @@
 // Input: state - the state used to generate the keystream
 //        key - Key to use to initialize the state
 //        len - length of key in bytes
-void ksa(unsigned char state[], unsigned char key[], int len)
+void ksa(unsigned char state[], unsigned char *key, int len)
 {
    int i,j=0,t;
 
@@ -38,15 +38,15 @@ void prga(unsigned char state[], unsigned char out[], int len)
    }
 }
 
-void rc4(unsigned char *text, unsigned char key[], long tlen)
+void rc4(unsigned char *text, unsigned char *key, long tlen, int klen)
 {
-	int len = strlen(key);
+	//int klen = strlen(key);
 	//const int tlen = strlen(text);
 	char state[256];
 
 	char stream[tlen];
 
-	ksa(state, key, len);
+	ksa(state, key, klen);
 	prga(state, stream, tlen);
 
 	for(int i=0; i<tlen; i++,text++)
