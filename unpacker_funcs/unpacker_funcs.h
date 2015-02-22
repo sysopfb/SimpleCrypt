@@ -1,2 +1,2 @@
-int getDataPtr(char *, long, int);
+int getDataPtr(char *, long, long);
 
