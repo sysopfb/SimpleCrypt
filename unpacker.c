@@ -9,19 +9,22 @@ struct conf{
 
 int main()
 {
-	long *pos;
+	long pos;
 	char szFilePath[1024];
 
 	//getfilepath
 	GetModuleFileNameA(0, szFilePath, 1024);
 
 
-	if(getDataPtr(szFilePath, pos, 0) != 0)
+	if(getDataPtr(szFilePath, &pos, 0) != 0)
 		exit(-1);
 
 	char key[] = "test\0";
 
-	fread((void *)&conf, sizeof(conf), 1, pos);
+	FILE *self = fopen(szFilePath, "rb");
+	if(pos)
+		fseek(self, pos, SEEK_SET);
+	fread((void *)&conf, sizeof(conf), 1, self);
 
 
 	return 0;
