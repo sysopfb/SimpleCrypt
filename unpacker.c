@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <Windows.h>
 #include "unpacker_funcs/unpacker_funcs.h"
 #include "rc4.h"
